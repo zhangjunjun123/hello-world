@@ -1,4 +1,11 @@
-export default [{
+export default [
+  {
+    leaf: true,
+    icon: 'fa fa-fw fa-certificate',
+    name: '首页',
+    path: '/'
+  },
+  {
     leaf: false,
     icon: 'fa fa-fw fa-certificate',
     name: '安全管理',
@@ -16,18 +23,7 @@ export default [{
       },
     ]
   },
-  {
-    leaf: true,
-    icon: 'fa fa-fw fa-user',
-    name: '系统用户管理',
-    path: '/system/staff/list'
-  },
-  {
-    leaf: true,
-    icon: 'fa fa-fw fa-lock',
-    name: '系统权限管理',
-    path: '/system/role/list'
-  }
+ 
   /*
   {
       leaf: false,

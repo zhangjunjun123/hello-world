@@ -1,43 +1,33 @@
-// 路由入口文件
+// 路由入口文件 需要在main.js中引用
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 //引入页面组件 .vue可省略
 import Login from '@/pages/Login.vue'
 //引入 router 模块js文件 .js可省略
-// import SystemRoutes from './system' 
+import ErrorRoutes from './Error'
+import IndexRoutes from './Home'
+import SystemRoutes from './system' 
 
 Vue.use(VueRouter)
+
+let childrenRouters = ErrorRoutes.concat(IndexRoutes).concat(SystemRoutes)
 // 定义路由
 let routes = [
   {
     path: '/login',
-    component: Login,
+    component: Login, // 方式一：静态引入
     meta: {
       auth: false //用于标志是否显示做菜单和头部用户信息 ，需要隐藏的标签上添加v-show="$route.meta.auth"即可
     }
   },
+  
   {
     path: '/',
-    component: resolve => require(['@/pages/Index'], resolve), //也可以采用以下方式（不用import了）
+    component: resolve => require(['@/pages/Home'], resolve), // 方式二：动态引入
     meta: {
       auth: true 
     },
-    children: [
-      {
-        path: 'system/staff/list',
-        component: resolve => require(['@/pages/system/staff/List'], resolve),
-        meta: {
-          auth: true
-        }
-      },
-      {
-        path: 'system/role/list',
-        component: resolve => require(['@/pages/system/role/List'], resolve),
-        meta: {
-          auth: true
-        }
-      }
-    ]
+    children: childrenRouters// 子路由指定的.vue挂载到path="/"指定的Home中的el-main <router-view></router-view>中 
   },
   
 ]

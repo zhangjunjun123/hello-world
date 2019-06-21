@@ -2,12 +2,12 @@
 <template>
     <div class="header">
         <!-- 公司logo -->
-        <a href="#"><img src="../assets/logo.png" alt="logo" class="logo"></a>
+        <router-link to="/"><img src="../assets/logo.png" alt="logo" class="logo"></router-link>
         <!-- 登录着信息 -->
-        <el-dropdown v-show="$route.meta.auth">
+        <el-dropdown v-show="showSide">
             <div class="el-dropdown-link">
                 <img src="../assets/user.png" alt="" class="userimg">
-                <span class="username">zhangjunjun</span>
+                <span class="username">zjj</span>
             </div>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item><el-button size="mini" >个人中心</el-button></el-dropdown-item><br>
@@ -18,7 +18,7 @@
 </template>
 <script>
 export default {
-    name: "Header"
+    name: "Header",
 }
 </script>
 <style>

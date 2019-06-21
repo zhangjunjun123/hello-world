@@ -1,10 +1,7 @@
 
 <template>
     <div>
-    <!-- 首页 -->
-    <el-main>
-    <router-view></router-view>
-    </el-main>
+        首页
     </div>
 </template>
 <script>

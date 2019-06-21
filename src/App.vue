@@ -8,7 +8,7 @@
     </el-header>
     <el-container>
       <!-- 左侧菜单 -->
-      <el-aside style="width: 240px;" v-show="$route.meta.auth">
+      <el-aside style="width: 240px;" v-show="showSide">
         <AsideMenu></AsideMenu>
       </el-aside>
       <el-container>
@@ -17,7 +17,7 @@
         </el-main>
         <!-- 引用Footer组件，可传参数：组件内props定义接受的参数 -->
         <el-footer>
-          <Footer copyright="©中科粮 保留所有权利。" author="zhangjunjun" icpCert="33333"></Footer>
+          <Footer copyright="©中科粮 保留所有权利。" author="zhangjunjun" icpCert="1111"></Footer>
         </el-footer>
       </el-container>
     </el-container>
@@ -32,6 +32,8 @@ import Header from "@/components/Header.vue"; // 引入Header.vue
 
 import AsideMenu from "@/components/AsideMenu"; // 引入左侧菜单
 
+// import { mapState } from 'vuex'
+
 export default {
   name: "app",
   components: {
@@ -39,6 +41,20 @@ export default {
     Footer,
     Header,
     AsideMenu
+  },
+  computed: {
+    // 判断是否为登录页面，不显示头部右侧用户信息
+     showSide() {
+      let show = (this.$route.path).search("login") == -1
+      return show
+    },
+    
+    //引入全局参数
+    // ...mapState(["user", "token"]),
+    // showSide() {
+    //   let show = (this.user === undefined || this.user === null)
+    //   return !(show)
+    // }
   }
 };
 </script>
