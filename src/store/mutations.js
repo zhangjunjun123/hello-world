@@ -8,6 +8,7 @@ export default {
   ['UPDATE_STAFF'] (state, {user}) {
     state.user = user
   },
+  
   ['UPDATE_TOKEN'] (state, token) {
     state.token = token
   },

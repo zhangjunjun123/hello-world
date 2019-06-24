@@ -50,9 +50,10 @@ export default {
     return {
       message: '',
       loginForm: {
-        username: 'kylin',
-        pwd: 'ping1234',
-        code: 123456
+        username: 'testDL',
+        pwd: 'dong1234',
+        code: 123456,
+        mobile: ''
       },
       loading: false,
       // 定义表单验证规则 key为prop的值

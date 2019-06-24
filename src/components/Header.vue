@@ -2,12 +2,14 @@
 <template>
     <div class="header">
         <!-- 公司logo -->
-        <router-link to="/"><img src="../assets/logo.png" alt="logo" class="logo"></router-link>
+        <img src="@/assets/logo.png" alt="logo" class="logo">
+        <!-- <router-link to="/"><img src="@/assets/logo.png" alt="logo" class="logo"></router-link> -->
         <!-- 登录着信息 -->
-        <el-dropdown v-show="showSide">
-            <div class="el-dropdown-link">
-                <img src="../assets/user.png" alt="" class="userimg">
-                <span class="username">zjj</span>
+        <el-dropdown v-if="showSide">
+            <div class="el-dropdown-link" >
+                <img v-bind:src="currentUser.logo" class="user-image" v-if="currentUser.logo">
+                <img src='@/assets/user.png' class="user-image" v-else/>
+                <span class="username">{{currentUser.username}}</span>
             </div>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item><el-button size="mini" >个人中心</el-button></el-dropdown-item><br>
@@ -17,8 +19,21 @@
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
     name: "Header",
+    computed: {
+    // 获取getters的属性值 ...mapGetters语法糖
+     ...mapGetters([
+      // ...函数名 使用对象展开运算符将此对象混入到外部对象中
+        'currentUser'
+    ]),
+    
+    showSide() {
+      let show = (this.currentUser === undefined || this.currentUser === null)
+      return !(show)
+    }
+  }
 }
 </script>
 <style>
@@ -31,7 +46,7 @@ export default {
     .el-dropdown-link {
         right: 10px;
     }
-    .userimg {
+    .user-image {
         width: 40px;
         height: 40px;
         border-radius: 50%;

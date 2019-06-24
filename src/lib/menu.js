@@ -1,11 +1,5 @@
 export default [
   {
-    leaf: true,
-    icon: 'fa fa-fw fa-certificate',
-    name: '首页',
-    path: '/'
-  },
-  {
     leaf: false,
     icon: 'fa fa-fw fa-certificate',
     name: '安全管理',

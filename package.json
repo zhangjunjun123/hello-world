@@ -22,7 +22,8 @@
     "vue-template-compiler": "^2.6.10",
     "vue-router": "^3.0.2",
     "vuex": "^3.1.0",
-    "axios": "^0.19.0"
+    "axios": "^0.19.0",
+    "js-base64": "^2.5.1"
   },
   "eslintConfig": {
     "root": true,
@@ -33,7 +34,7 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {"no-console":"off"},
     "parserOptions": {
       "parser": "babel-eslint"
     }

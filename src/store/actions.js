@@ -13,7 +13,8 @@ export default {
       LoginAPI.login(name, password).then(response => {
         const data = response.data
         if(data != null){
-          commit("UPDATE_STAFF", data.staffUser) // 请求mutation.js 进行set state中的user属性
+          const user = data.staffUser
+          commit("UPDATE_STAFF", {user}) // 请求mutation.js 进行set state中的user属性
           commit("UPDATE_TOKEN", data.token) // 请求mutation.js 进行set state中的token属性
         }
         resolve(response) // 请求成功响应

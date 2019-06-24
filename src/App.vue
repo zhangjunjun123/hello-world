@@ -8,7 +8,7 @@
     </el-header>
     <el-container>
       <!-- 左侧菜单 -->
-      <el-aside style="width: 240px;" v-show="showSide">
+      <el-aside style="width: 240px;"  v-if='showSide'>
         <AsideMenu></AsideMenu>
       </el-aside>
       <el-container>
@@ -32,7 +32,7 @@ import Header from "@/components/Header.vue"; // 引入Header.vue
 
 import AsideMenu from "@/components/AsideMenu"; // 引入左侧菜单
 
-// import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: "app",
@@ -42,20 +42,17 @@ export default {
     Header,
     AsideMenu
   },
-  computed: {
-    // 判断是否为登录页面，不显示头部右侧用户信息
-     showSide() {
-      let show = (this.$route.path).search("login") == -1
-      return show
-    },
-    
-    //引入全局参数
-    // ...mapState(["user", "token"]),
-    // showSide() {
-    //   let show = (this.user === undefined || this.user === null)
-    //   return !(show)
-    // }
+ computed: {
+    ...mapGetters([
+    // ...函数名 使用对象展开运算符将此对象混入到外部对象中
+      'currentUser'
+  ]),
+  
+  showSide() {
+    let show = (this.currentUser === undefined || this.currentUser === null)
+    return !(show)
   }
+}
 };
 </script>
 

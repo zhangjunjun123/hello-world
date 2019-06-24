@@ -4,7 +4,8 @@ let routes = [
     name: 'StaffList', //定义路由的名称，在做路由跳转时直接指定跳转的路由的name即可
     component: resolve => require(['@/pages/system/staff/List'], resolve),
     meta: {
-      auth: true
+      auth: true,
+      roles: ['ROLE_CRM_ADMIN', 'ROLE_CRM_STAFF_ADMIN']
     }
   },
   /*{
@@ -36,7 +37,8 @@ let routes = [
     name: 'StaffRoleList',
     component: resolve => require(['@/pages/system/role/List'], resolve),
     meta: {
-      auth: true
+      auth: true,
+      roles: ['ROLE_CRM_ADMIN', 'ROLE_CRM_STAFF_ADMIN']
     }
   },
   /*
