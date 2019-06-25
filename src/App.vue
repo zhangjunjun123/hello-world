@@ -104,4 +104,7 @@ body > .el-container {
   background-color: #fff;
   height: 100%;
 }
+.el-card__header{
+  text-align: center;
+}
 </style>

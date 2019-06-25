@@ -10,12 +10,12 @@ import Home from '@/pages/Home'
 import ErrorRoutes from './Error'
 import IndexRoutes from './Home'
 import SystemRoutes from './system' 
-
+import DealerRoutes from './dealer'
 
 
 Vue.use(VueRouter)
 
-let childrenRouters = ErrorRoutes.concat(IndexRoutes).concat(SystemRoutes)
+let childrenRouters = ErrorRoutes.concat(IndexRoutes).concat(SystemRoutes).concat(DealerRoutes)
 // 定义路由
 let routes = [
 

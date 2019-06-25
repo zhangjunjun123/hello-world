@@ -50,8 +50,8 @@ export default {
     return {
       message: '',
       loginForm: {
-        username: 'testDL',
-        pwd: 'dong1234',
+        username: 'kylin',
+        pwd: 'ping1234',
         code: 123456,
         mobile: ''
       },

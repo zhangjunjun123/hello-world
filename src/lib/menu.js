@@ -17,7 +17,19 @@ export default [
       },
     ]
   },
- 
+  {
+    leaf: false,
+    icon: 'fa fa-fw fa-user',
+    name: '客户管理',
+    children: [
+      {
+        leaf: true,
+        icon: 'fa fa-fw fa-user-circle-o',
+        name: '经销商管理',
+        path: '/dealer/list'
+      }
+    ]
+  },
   /*
   {
       leaf: false,
@@ -44,31 +56,7 @@ export default [
         }
       ]
   },
-  {
-      leaf: false,
-      icon: 'fa fa-fw fa-user',
-      name: '客户管理',
-      children: [
-        {
-          leaf: true,
-          icon: 'fa fa-fw fa-user-circle-o',
-          name: '经销商管理',
-          path: '/dealer/list'
-        },
-        {
-          leaf: true,
-          icon: 'fa fa-fw fa-money',
-          name: '费用管理',
-          path: '/dealer/fee/list'
-        },
-        {
-          leaf: true,
-          icon: 'fa fa-fw fa-exclamation-triangle',
-          name: '违规管理',
-          path: '/dealer/violation/list'
-        }
-      ]
-  },
+  
 
     {
       leaf: false,

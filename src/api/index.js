@@ -1,19 +1,19 @@
 import axios from 'axios'
 import store from '../store'
-// import router from '../router'
-// import Vue from 'vue'
+import router from '../router'
+import Vue from 'vue'
 
 const apiRoot = "http://localhost:7051/api1"
 const apiContentType = 'application/json;charset=UTF-8'
 axios.defaults.baseURL = apiRoot
 //引用element的消息框
-// import { MessageBox } from 'element-ui'
+import { MessageBox } from 'element-ui'
 
 const axiosInstance = axios.create({
   baseURL: apiRoot,
   timeout: 30000
 })
-/*
+
 // loading框设置局部刷新，且所有请求完成后关闭loading框
 let loading
 let needLoadingRequestCount = 0 // 声明一个对象用于存储请求个数
@@ -95,7 +95,7 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(error)
     }
   })
-*/
+
 function httpInvoke (method, url, params, responseType) {
   let token = (store.state.token) ? 'Bearer ' + store.state.token : ''
   return axiosInstance({

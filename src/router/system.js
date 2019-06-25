@@ -8,11 +8,13 @@ let routes = [
       roles: ['ROLE_CRM_ADMIN', 'ROLE_CRM_STAFF_ADMIN']
     }
   },
-  /*{
+  {
     path: 'system/staff/add',
+    name: 'StaffAdd',
     component: resolve => require(['@/pages/system/staff/Add'], resolve),
     meta: {
-      auth: true
+      auth: true,
+      roles: ['ROLE_CRM_ADMIN', 'ROLE_CRM_STAFF_ADMIN']
     }
   },
   {
@@ -20,9 +22,11 @@ let routes = [
     name: 'StaffEdit',
     component: resolve => require(['@/pages/system/staff/Edit'], resolve),
     meta: {
-      auth: true
+      auth: true,
+      roles: ['ROLE_CRM_ADMIN', 'ROLE_CRM_STAFF_ADMIN']
     }
   },
+  /*
   {
     path: 'system/staff/profile',
     name: 'StaffProfile',
