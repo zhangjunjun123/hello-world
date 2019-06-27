@@ -27,6 +27,12 @@ export default [
         icon: 'fa fa-fw fa-user-circle-o',
         name: '经销商管理',
         path: '/dealer/list'
+      },
+      {
+        leaf: true,
+        icon: 'fa fa-fw fa-user-circle-o',
+        name: '费用管理',
+        path: '/dealer/fee/list'
       }
     ]
   },

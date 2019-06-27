@@ -31,7 +31,6 @@ let routes = [
   {
     path: '/',
     component: Home, // 方式二：动态引入
-    name: 'Home',
     meta: {
       auth: true 
     },

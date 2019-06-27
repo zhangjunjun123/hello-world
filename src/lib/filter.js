@@ -47,6 +47,32 @@ const formatUserStatus = function(status){
         return '已禁用'
     }
 }
+
+const formatCNY = function (price) {
+    if (undefined === price || price === null) {
+        return ''
+    }
+    // 金额小于1元
+    if (price < 100) {
+        // 小于0.1元
+        if (price < 10) {
+            return '￥0.0' + price
+        } else {
+            if (price % 10 === 0) {
+                return '￥0.' + price
+            } else {
+                return '￥0.' + price
+            }
+        }
+        // 金额大于1元
+    } else {
+        if (price % 100 < 10) {
+            return '￥' + parseInt(price / 100) + '.0' + (price % 100)
+        } else {
+            return '￥' + parseInt(price / 100) + '.' + (price % 100)
+        }
+    }
+}
 export default {
-    formatDate, formatTime, formatGender, formatUserStatus
+    formatDate, formatTime, formatGender, formatUserStatus, formatCNY
 }
