@@ -2,7 +2,7 @@
     <el-card class="box-card">
         <div slot="header" class="clearfix">
             <span>经销商清单</span>
-            <el-button style="float: right; " type='primary' size="mini" >增加经销商</el-button>
+            <el-button style="float: right; " type='primary' size="mini" @click="handleDealerAdd">增加经销商</el-button>
         </div>
         <!--  gutter 栅格间隔-->
         <el-row :gutter="1">
@@ -81,10 +81,13 @@
                 </el-pagination>
             </el-col>
         </el-row>
+        <!-- 引入添加经销商对话框 -->
+        <dealerAdd title="新增经销商" :visible="showAdd" @cancel-submit="closeDialog" @confirm-submit="closeDialog"></dealerAdd>
     </el-card>
 </template>
 <script>
     import DealerAPI from '@/api/dealer'
+    import dealerAdd from './Add'
     export default {
         name: 'DealerList',
         data() {
@@ -95,9 +98,11 @@
                     pageIndex: 0,
                     pageSize: 10
                 },
-                pageData: {}
+                pageData: {},
+                showAdd: false
             }
         },
+        
         created () {
             this.fetchData()
         },
@@ -130,7 +135,18 @@
                 console.log(`当前页: ${val}`);
                 this.queryParam.pageIndex = val-1
                 this.fetchData()
+            },
+            //点击添加经销商
+            handleDealerAdd(){
+                console.log('addShow')
+                this.showAdd = true
+            },
+            closeDialog(){
+                this.showAdd = false
             }
+        },
+        components: {
+            dealerAdd
         }
         
     }

@@ -75,9 +75,9 @@
         staffUsers: [],
       }
     },
-    created () {
+    created () { // created: function(){} 简写 ： vue实例创建后执行
         StaffAPI.list().then(response => {
-            this.staffUsers = response.data
+            this.staffUsers = response.data // 生命周期钩子函数中的this指vue实例
         })
     },
     methods: {

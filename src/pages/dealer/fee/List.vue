@@ -20,6 +20,18 @@
                     <el-option label='已拒绝' :value="256" />
                 </el-select>
             </el-col>
+            <el-col :span="8">
+                <el-date-picker
+                    v-model="allTime"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                    @change="handleTimeChage()"
+                    >
+                </el-date-picker>
+            </el-col>
+            
         </el-row>
         <br/>
         <el-tabs type="border-card">
@@ -94,6 +106,7 @@
                     pageIndex: 0,
                     pageSize: 10
                 },
+                allTime:[], //存开始、结束时间
                 pageData: {},
                 dealerList:{}
             }
@@ -126,6 +139,15 @@
             handleStatusChage(val){
                 this.queryParam.feeStatus = val
                 this.fetchData()
+            },
+            handleTimeChage(){
+                console.log('change time')
+                if(this.allTime){
+                    this.queryParam.begin = this.allTime[0].getTime()
+                    this.queryParam.end = this.allTime[1].getTime()
+                    console.log(this.queryParam.begin+'---------'+this.queryParam.end)
+                    this.fetchData()
+                }
             },
             //分页
             handleSizeChange(val){
