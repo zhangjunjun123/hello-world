@@ -33,6 +33,18 @@ export default [
         icon: 'fa fa-fw fa-user-circle-o',
         name: '费用管理',
         path: '/dealer/fee/list'
+      },
+      {
+        leaf: true,
+        icon: 'fa fa-fw fa-user-circle-o',
+        name: '统计',
+        path: '/dealer/statistics/list'
+      },
+      {
+        leaf: true,
+        icon: 'fa fa-fw fa-user-circle-o',
+        name: '统计-引用组件',
+        path: '/dealer/statistics/list2'
       }
     ]
   },

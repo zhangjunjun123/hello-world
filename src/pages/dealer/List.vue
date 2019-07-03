@@ -63,6 +63,26 @@
                         <span>{{scope.row.validDate | formatDate}}</span>
                     </template>
                 </el-table-column>
+                <el-table-column label='操作'>
+                    <template slot-scope="scope">
+                        <el-dropdown size="mini" type="primary" split-button >详情
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item divided>
+                                <el-button style type="text" size="mini" @click="handleEdit(scope.row)">修改经销商信息</el-button>
+                                </el-dropdown-item>
+                                <el-dropdown-item divided>
+                                <el-button style type="text" size="mini" >经销商授权</el-button>
+                                </el-dropdown-item>
+                                <el-dropdown-item divided>
+                                <el-button style type="text" size="mini" >经销商成员用户</el-button>
+                                </el-dropdown-item>
+                                <el-dropdown-item divided>
+                                <el-button style type="text" size="mini" >配货地址管理</el-button>
+                                </el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </template>
+                </el-table-column>
             </el-table>
         </el-tabs>
         <br/>
@@ -82,12 +102,14 @@
             </el-col>
         </el-row>
         <!-- 引入添加经销商对话框 -->
-        <dealerAdd title="新增经销商" :visible="showAdd" @cancel-submit="closeDialog" @confirm-submit="closeDialog"></dealerAdd>
+        <dealerAdd title="新增经销商" :visible="showAdd" @cancel-submit="cancelAdd" @confirm-submit="confirmAdd"></dealerAdd>
+        <dealerEdit title="修改经销商" :visible="showEdit" :data="selectDealer" @cancel-submit="cancelEdit" @confirm-submit="confirmEdit"></dealerEdit>
     </el-card>
 </template>
 <script>
     import DealerAPI from '@/api/dealer'
     import dealerAdd from './Add'
+    import dealerEdit from './Edit'
     export default {
         name: 'DealerList',
         data() {
@@ -99,7 +121,9 @@
                     pageSize: 10
                 },
                 pageData: {},
-                showAdd: false
+                selectDealer: {},
+                showAdd: false,
+                showEdit: false
             }
         },
         
@@ -141,12 +165,29 @@
                 console.log('addShow')
                 this.showAdd = true
             },
-            closeDialog(){
+            cancelAdd(){
                 this.showAdd = false
+            },
+            confirmAdd (){
+                this.showAdd = false
+                this.fetchData()
+            },
+            //点击修改经销商
+            handleEdit (dealer){
+                this.selectDealer = dealer
+                this.showEdit = true
+            },
+            cancelEdit(){
+                this.showEdit = false
+            },
+            confirmEdit (){
+                this.showEdit = false
+                this.fetchData()
             }
         },
         components: {
-            dealerAdd
+            dealerAdd,
+            dealerEdit
         }
         
     }

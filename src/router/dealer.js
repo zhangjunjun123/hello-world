@@ -16,6 +16,24 @@ let routes = [
         auth: true,
         roles: ['ROLE_CRM_ADMIN', 'ROLE_CRM_DEALER_ADMIN']
         }
+    },
+    {
+        path: 'dealer/statistics/list',
+        name: 'StatisticsList', //定义路由的名称，在做路由跳转时直接指定跳转的路由的name即可
+        component: resolve => require(['@/pages/dealer/statistics/List'], resolve),
+        meta: {
+        auth: true,
+        roles: ['ROLE_CRM_ADMIN', 'ROLE_CRM_DEALER_ADMIN']
+        }
+    },
+    {
+        path: 'dealer/statistics/list2',
+        name: 'StatisticsList2', //定义路由的名称，在做路由跳转时直接指定跳转的路由的name即可
+        component: resolve => require(['@/pages/dealer/statistics/List2'], resolve),
+        meta: {
+        auth: true,
+        roles: ['ROLE_CRM_ADMIN', 'ROLE_CRM_DEALER_ADMIN']
+        }
     }
 ]
 export default routes
