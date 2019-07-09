@@ -100,6 +100,7 @@ export default {
     },
     // 点击登录
     handleLogin () {
+      // this.$refs.loginForm 获取标有ref="loginForm"的DOM元素
       //  this.$refs.loginForm.validate()检查loginForm表单上添加的表单验证是否正确
       // 1，el-form-item prop属性必须绑定   2 .el-form 必须添加 rules，model属性绑定，ref标识
       this.$refs.loginForm.validate(valid => {

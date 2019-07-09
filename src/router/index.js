@@ -13,6 +13,7 @@ import SystemRoutes from './system'
 import DealerRoutes from './dealer'
 
 
+
 Vue.use(VueRouter)
 
 let childrenRouters = ErrorRoutes.concat(IndexRoutes).concat(SystemRoutes).concat(DealerRoutes)
@@ -111,29 +112,37 @@ router.beforeEach((to, from, next) => {
     if(to.meta === null || !to.meta.auth){
       next()
     }else {
-      //未登录的先进行登陆操做
-      if (store.state.user === null || store.state.token === null) {
+      if(sessionStorage.getItem("isLogin")){
+        //未登录的先进行登陆操做
+        if (store.state.user === null || store.state.token === null) {
+          //将seesionStrorage的数据set到state中（防止刷新时vuex数据消失）
+          // store.dispatch 调用actions.js中的方法
+          store.dispatch('SET_USER', JSON.parse(sessionStorage.getItem("user")))
+          store.dispatch('SET_TOKEN', sessionStorage.getItem("token"))
+          // 已登陆，判断token是否过期
+          let tokenExpired = parseValidTime(store.state.token)
+          if (tokenExpired <= new Date().getTime() / 1000) {
+            next({
+              path: '/login'
+            })
+          }
+          // 判断用户权限
+          let roles = parseRoles(store.state.token)
+          if (matchRoles(to.meta.roles, roles)) {
+            next()
+          } else {
+            //跳权限不足页面403
+            next({
+              path: '/403'
+            })
+          }
+        }else{
+          next()
+        }
+      } else {
         next({
           path: '/login'
         })
-      } else {
-        // 已登陆，判断token是否过期
-        let tokenExpired = parseValidTime(store.state.token)
-        if (tokenExpired <= new Date().getTime() / 1000) {
-          next({
-            path: '/login'
-          })
-        }
-        // 判断用户权限
-        let roles = parseRoles(store.state.token)
-        if (matchRoles(to.meta.roles, roles)) {
-          next()
-        } else {
-          //跳权限不足页面403
-          next({
-            path: '/403'
-          })
-        }
       }
     }
   }

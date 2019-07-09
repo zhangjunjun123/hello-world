@@ -13,9 +13,7 @@ export default {
       LoginAPI.login(name, password).then(response => {
         const data = response.data
         if(data != null){
-          const user = data.staffUser
-          commit("UPDATE_STAFF", {user}) // 请求mutation.js 进行set state中的user属性
-          commit("UPDATE_TOKEN", data.token) // 请求mutation.js 进行set state中的token属性
+          commit("ADD_LOGIN_USER", {data}) // 通过commit调用mutations中的方法
         }
         resolve(response) // 请求成功响应
       }).catch(error => {
@@ -26,9 +24,16 @@ export default {
   // 定义登出的方法
   STAFF_LOGOUT ({ commit }) {
     return new Promise((resolve) => {
-      commit("UPDATE_STAFF", null)
-      commit("UPDATE_TOKEN", null)
+      commit("SIGN_OUT")
+      
       resolve()
     })
-  }
+  },
+  // roter的index.js 调用
+  SET_USER({commit}, user) {
+    commit("SET_USER", {user})
+  },
+  SET_TOKEN({commit}, token) {
+    commit("SET_TOKEN", token)
+  },
 }

@@ -42,17 +42,24 @@ export default {
     Header,
     AsideMenu
   },
- computed: {
-    ...mapGetters([
-    // ...函数名 使用对象展开运算符将此对象混入到外部对象中
-      'currentUser'
-  ]),
-  
-  showSide() {
-    let show = (this.currentUser === undefined || this.currentUser === null)
-    return !(show)
+  computed: {
+      ...mapGetters([
+      // ...函数名 使用对象展开运算符将此对象混入到外部对象中
+        'currentUser'
+      ]),
+      
+
+    
+    showSide() {
+      let show = (this.currentUser === undefined || this.currentUser === null)
+      return !(show)
+    },
+
+  },
+  mounted (){
+   
   }
-}
+
 };
 </script>
 
