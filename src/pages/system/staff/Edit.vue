@@ -119,10 +119,11 @@
           if(valid){
             this.loading = true
             StaffAPI.update(this.staffUser).then(() => {
+              this.$message.error('用户数据保存成功')
               this.loading = false
               this.$router.push({ path: '/system/staff/list' })
             }).catch(error=>{
-              this.$message.info('保存用户数据错误，请稍后重试.' + error)
+              this.$message.error('保存用户数据错误，请稍后重试.' + error)
               this.loading = false
             })
           } else {

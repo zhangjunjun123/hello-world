@@ -120,9 +120,6 @@ export default {
     // 登陆成功
     loginSuccess () {
       this.loading = false
-      // localStorage.token = data.token
-      // this.$store.state.user.currentStaff = data.staffUser
-      // this.$store.state.user.jwt = data.token
       this.$router.push({ path: '/' })
     },
     //登陆失败

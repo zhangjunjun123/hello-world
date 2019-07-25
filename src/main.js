@@ -11,7 +11,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(Element)
 //引入全局过滤器
 import filters from './lib/filter'
-
+//引用字体
+import 'font-awesome/css/font-awesome.min.css'
 
 
 Object.keys(filters).forEach(key => {

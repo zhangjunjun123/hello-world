@@ -128,10 +128,11 @@ export default {
           this.loading = true
           // 用户信息
           StaffAPI.add(this.staffUser).then(() => {
+            this.$message.success('保存用户数保存成功')
             this.loading = false
             this.$router.push({ path: '/system/staff/list' })
           }).catch(error => {
-            this.$message.info('保存用户数据错误，请稍后重试.' + error)
+            this.$message.error('保存用户数据错误，请稍后重试.' + error)
             this.loading = false
           })
           // 保存用户数据

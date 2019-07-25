@@ -206,11 +206,11 @@ export default {
           DealerAPI.update(dealer)
             .then((response) => {
               this.loading = false;
-              this.$message.info("恭喜，客户已经创建成功。");
+              this.$message.success("恭喜，客户已经创建成功。");
               this.$emit("confirm-submit", response.data)
             })
             .catch(error => {
-              this.$message.info("保存客户数据错误，请稍后重试." + error);
+              this.$message.error("保存客户数据错误，请稍后重试." + error);
               this.loading = false;
             });
         } else {

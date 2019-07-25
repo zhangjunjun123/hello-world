@@ -48,6 +48,31 @@ export default [
       }
     ]
   },
+  {
+    leaf: false,
+    ico: 'fa fa-fw fa-tags',
+    name: '产品库管理',
+    children: [
+      {
+        leaf: true,
+        icon: 'fa fa-fw fa-ticket',
+        name: '供应商管理',
+        path: '/product/supplier/list'
+      },
+      {
+        leaf: true,
+        icon: 'fa fa-fw fa-tags',
+        name: '品类管理',
+        path: '/product/catalog/list'
+      },
+      {
+        leaf: true,
+        icon: 'fa fa-fw fa-list',
+        name: '商品管理',
+        path: '/product/product/list'
+      }
+    ]
+  },
   /*
   {
       leaf: false,

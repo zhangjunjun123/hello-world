@@ -1,20 +1,24 @@
 <template>
     <!--【Element】 before-close 关闭前的回调，会暂停 Dialog 的关闭-->
-    <el-dialog :title="title" :visible.sync="visible"   :before-close="closeDialog">
+    <el-dialog :title="title" :visible.sync="visible" :before-close="closeDialog">
         <el-card class="box-card">
             <el-form
-            :model="StaffRole"
-            :rules='roleRules'
-            ref="StaffRoleInfo"
+            :model="Supplier"
+            :rules="SupplierRules"
+            ref="SupplierInfo"
             label-position="left"
             label-width="150px"
             style="text-align: left;">
-                <el-form-item prop='authority' label="权限名称" required>
-                <el-input v-model="StaffRole.authority"></el-input>
+                <el-form-item prop="supplierName" label="供应商名称">
+                <el-input v-model="Supplier.supplierName"></el-input>
                 </el-form-item>
-               <el-form-item prop='description' label="权限描述" required>
-                <el-input v-model="StaffRole.description"></el-input>
+                <el-form-item  prop="companyName" label="企业名称">
+                <el-input v-model="Supplier.companyName"></el-input>
                 </el-form-item>
+                <el-form-item prop="companyAddress" label="企业地址">
+                <el-input v-model="Supplier.companyAddress"></el-input>
+                </el-form-item>
+               
                 <el-form-item style="width: 100%">
                     <el-row :gutter="0">
                     <el-col :span="12" :offset="0">
@@ -35,9 +39,9 @@
     </el-dialog>
 </template>
 <script>
-  import RoleAPI from '@/api/role'
+  import SupplierAPI from '@/api/supplier'
   export default {
-    name: "StaffRoleAdd",
+    name: "SupplierAdd",
     //允许接收的参数
     props: {
         title: {
@@ -50,16 +54,20 @@
     data() {
       return {
         loading: false, // 加载动画
-        StaffRole: {
-            authority: '',
-            description: ''
+        Supplier: {
+            supplierName: '',
+            companyName: '',
+            companyAddress: ''
         },
-        roleRules: {
-            authority: [
-            { required: true, message: '请输入权限名称', trigger: 'blur' }
+        SupplierRules:{
+            supplierName: [
+                { required: true, message: '请输入供应商名称', trigger: 'blur' }
             ],
-            description: [
-            { required: true, message: '请输入权限描述', trigger: 'blur' }
+            companyName: [
+                { required: true, message: '请输入企业名称', trigger: 'blur' }
+            ],
+            companyAddress: [
+                { required: true, message: '请输入企业地址', trigger: 'blur' }
             ]
         }
       }
@@ -73,10 +81,10 @@
         },
         //提交
         handleSubmit() {
-            this.$refs.StaffRoleInfo.validate(valid => {
+            this.$refs.SupplierInfo.validate(valid => {
                 if(valid){
                     this.loading = true
-                    RoleAPI.add(this.StaffRole).then(()=>{
+                    SupplierAPI.add(this.Supplier).then(()=>{
                         this.loading = false;
                         this.$message.success("恭喜，权限数据保存成功。");
                         this.$emit("confirm-submit");
